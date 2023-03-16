@@ -28,7 +28,7 @@ public class DogRepository {
         dogs.add(new Dog("Shooter", 4, "Grey", AdoptionStatus.AVAILABLE, AgeCategory.ADULT, 17, Breed.CHIHUAHUA, "chihuahua2.jpg", "The dog"));
         dogs.add(new Dog("Barbra", 2, "Grey", AdoptionStatus.AVAILABLE, AgeCategory.PUPPY, 18, Breed.STAFFORDSHIRE_TERRIER, "staffordBullTerrier2.jpg", "The dog"));
         dogs.add(new Dog("Jimmy", 3, "Grey", AdoptionStatus.URGENT, AgeCategory.PUPPY, 19, Breed.MIXED, "mixed3.jpg", "The dog"));
-        dogs.add(new Dog("Bort", 1, "Grey", AdoptionStatus.AVAILABLE, AgeCategory.PUPPY, 20, Breed.SHITZU, "shitzu2.jpg", "The dog"));
+        dogs.add(new Dog("AGATON", 1, "Grey", AdoptionStatus.AVAILABLE, AgeCategory.PUPPY, 20, Breed.SHITZU, "shitzu2.jpg", "The dog"));
     }
 
     public Dog getDog(int id) {
