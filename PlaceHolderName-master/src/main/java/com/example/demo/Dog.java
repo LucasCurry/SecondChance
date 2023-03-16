@@ -2,7 +2,7 @@ package com.example.demo;
 
 public class Dog {
     private String name;
-    private int age;
+    private String age;
     private String color;
     private AdoptionStatus status;
     private AgeCategory ageCategory;
@@ -11,7 +11,7 @@ public class Dog {
     private String imageUrl;
     private String description;
 
-    public Dog(String name, int age, String color, AdoptionStatus status, AgeCategory ageCategory, int id, Breed breed, String imageUrl, String description) {
+    public Dog(String name, String age, String color, AdoptionStatus status, AgeCategory ageCategory, int id, Breed breed, String imageUrl, String description) {
         this.name = name;
         this.age = age;
         this.color = color;
@@ -33,12 +33,12 @@ public class Dog {
         this.name = name;
     }
 
-    public int getAge() {
+    public String getAge() {
 
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
 
         this.age = age;
     }
