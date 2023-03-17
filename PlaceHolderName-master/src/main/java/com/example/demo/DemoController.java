@@ -48,6 +48,12 @@ public class DemoController {
         return "dog";
     }
 
+    @GetMapping("/dog/{id}/form")
+    public String adoptionform(@PathVariable Integer id) {
+
+        return "form";
+    }
+
     @GetMapping("/donations")
     public String donations(Model model, DonationShop donationShop){
         List<Item> itemList = donationShop.getAllItems();
