@@ -83,7 +83,6 @@ a {
 }
 
 .test {
-    object-fit: cover;
     width: 250px;
     height: 250px;
     background-color: #FFF;
@@ -101,7 +100,18 @@ button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-
+.profile {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    background-color: #efe7e7;
+    border: 1px solid #efe7e7;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 2px 0 #eaeeef;
+}
 
 
 
