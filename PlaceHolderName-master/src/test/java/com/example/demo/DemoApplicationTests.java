@@ -29,4 +29,10 @@ class DemoApplicationTests {
         Assertions.assertEquals(20, dogs.size());
     }
 
+    @Test
+    void testGetDog() {
+        Dog dog = dogRepository.getDog(14);
+        Assertions.assertEquals("Sammy", dog.getName());
+    }
+
 }
