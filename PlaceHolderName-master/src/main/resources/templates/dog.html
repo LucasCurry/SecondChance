@@ -35,6 +35,7 @@
                                     <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600" th:text="'Status: ' + ${dog.status}">Status:</span></li>
                                     <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600" th:text="'Category: ' + ${dog.ageCategory}">Status:</span></li>
                                     <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600" th:text="'Breed: ' + ${dog.Breed}">Breed:</span></li>
+                                    <button><a class="adopt" th:href="'/dog/' + ${dog.id} + '/form'" type="button">Adopt me!</a></button>
                                 </ul>
                                 <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
                                     <li><a href="#!"><i class="ti-twitter-alt"></i></a></li>
