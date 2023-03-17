@@ -1,17 +1,17 @@
 package com.example.demo;
 
 public enum Breed {
-    STAFFORDSHIRE_TERRIER("StaffordShire Terrier"),
+    STAFFORD_BULLTERRIER("StaffordShire Terrier"),
     PITBULL("PitBull"),
     CHIHUAHUA("Chihuahua"),
     GREYHOUND("Greyhound"),
-    GOLDEN_RETREIVER("Golden Retriever"),
+    GOLDEN_RETRIEVER("Golden Retriever"),
     LABRADOR("Labrador"),
     BORZOI("Borzoi"),
     SAINT_BERNARD("Saint Bernard"),
     SHIBA_INU("Shiba Inu"),
     SHITZU("Shitzu"),
-    DAlMATIAN("Dalmatian"),
+    DALMATIAN("Dalmatian"),
     COCKER_SPANIEL("Cocker spaniel"),
     MIXED("Mixed");
 

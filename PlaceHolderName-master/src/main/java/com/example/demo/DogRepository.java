@@ -1,14 +1,29 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-@Service
+
+@Repository
 public class DogRepository {
+
+    @Autowired
+    private DataSource dataSource;
     private List<Dog> dogs = new ArrayList<>();
 
-    public DogRepository() {
+    public DogRepository () {
+
+    }
+
+    /*public DogRepository() {
         dogs.add(new Dog("Bruno", "2019-02-17", "Brown", AdoptionStatus.RESERVED, AgeCategory.ADULT, 1, Breed.LABRADOR, "/labrador1.jpg", "Bruno is a playful dog, gets attached to its owner very easily."));
         dogs.add(new Dog("Simba", "2018-08-17", "Brown", AdoptionStatus.URGENT, AgeCategory.ADULT, 2, Breed.PITBULL, "/pitbull1.jpg", "Sima likes to show dominance, very protective of its owner."));
         dogs.add(new Dog("Tintin", "2022-02-01", "Brown", AdoptionStatus.AVAILABLE, AgeCategory.PUPPY, 3, Breed.LABRADOR, "/labrador2.jpg", "Tintin has tons of energy, likes to exercise and play around a lot."));
@@ -29,7 +44,7 @@ public class DogRepository {
         dogs.add(new Dog("Barbra", "2022-02-016", "Grey", AdoptionStatus.AVAILABLE, AgeCategory.PUPPY, 18, Breed.STAFFORDSHIRE_TERRIER, "/staffordBullTerrier2.jpg", "Barbras idea of a perfect day is laying in the sofa and napping through the whole day"));
         dogs.add(new Dog("Jimmy", "2022-11-01", "Grey", AdoptionStatus.URGENT, AgeCategory.PUPPY, 19, Breed.MIXED, "/mixed3.jpg", "Jimmy loves to play outside and has a special love for the ladies"));
         dogs.add(new Dog("Bort", "2022-08-11", "Grey", AdoptionStatus.AVAILABLE, AgeCategory.PUPPY, 20, Breed.SHITZU, "/shitzu2.jpg", "Bort is a little daredevil with so much love and energy to give to the right owners!"));
-    }
+    }*/
 
     public Dog getDog(int id) {
         for (Dog d : dogs) {
@@ -39,19 +54,50 @@ public class DogRepository {
         }
         return null;
     }
+
+    /*public List<Dog> getAllDogs() {
+
+        return dogs;
+    }*/
+
+    private Dog rsDog(ResultSet rs) throws SQLException {
+        return new Dog (rs.getString("name"),
+                rs.getString("age"),
+                rs.getString("color"),
+                AdoptionStatus.valueOf(rs.getString("adoption_status").toUpperCase()),
+                AgeCategory.valueOf(rs.getString("age_category").toUpperCase()),
+                rs.getInt("id"),
+                Breed.valueOf(rs.getString("breed").toUpperCase()),
+                rs.getString("image_url"),
+                rs.getString("description"));
+    }
+
     public List<Dog> getAllDogs() {
+        List<Dog> dogs = new ArrayList<>();
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM dog");
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                dogs.add(rsDog(rs));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return dogs;
     }
 
     public List<Dog> getPage(int page, int pageSize) {
-        int from = Math.max(0,page*pageSize);
-        int to = Math.min(dogs.size(),(page+1)*pageSize);
+        int from = Math.max(0, page * pageSize);
+        int to = Math.min(dogs.size(), (page + 1) * pageSize);
 
         return dogs.subList(from, to);
     }
 
     public int numberOfPages(int pageSize) {
-        return (int)Math.ceil((double)dogs.size() / pageSize);
+        return (int) Math.ceil((double) dogs.size() / pageSize);
     }
 }
